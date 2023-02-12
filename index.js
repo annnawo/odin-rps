@@ -11,7 +11,7 @@ function getComputerChoice() {
 	return computerChoice;
 }
 
-function playerSelection() {
+function getPlayerSelection() {
 	let playerChoice = prompt('Please enter your desired move');
 	let playerSelection;
 	playerChoice = playerChoice.toLowerCase();
@@ -26,7 +26,43 @@ function playerSelection() {
 	} else {
 		playerSelection = 2;
 	 }
-	 return playerSelection;
+	return playerSelection;
 }
 
-console.log(playerSelection());
+function playRound() {
+	playerSelection = getPlayerSelection();
+	computerChoice = getComputerChoice();
+	let playerWins = 0;
+	let compWins = 0;
+
+	if (playerSelection === computerChoice) {
+		console.log(`It's a tie!`);
+	}
+	else if ((playerSelection === 0) && (computerChoice ===1)) {
+		console.log(`The computer wins.`);
+		compWins += 1;
+	}
+	else if ((playerSelection === 1) && (computerChoice === 0)) {
+		console.log(`You won!`);
+		playerWins += 1;
+	}
+	else if ((playerSelection === 0) && (computerChoice === 2)) {
+		console.log(`You won!`);
+		playerWins += 1;
+	}
+	else if ((playerSelection === 2) && (computerChoice === 0)) {
+		console.log(`The computer wins.`)
+		compWins += 1;
+	}
+	else if ((playerSelection === 1) && (computerChoice === 2)) {
+		console.log(`The computer wins.`)
+		compWins += 1;
+	}
+	else if ((playerSelection === 2) && (computerChoice === 1)) {
+		console.log(`You won!`);
+		playerWins += 1;
+	}
+}
+
+
+console.log(playRound());
