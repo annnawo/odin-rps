@@ -32,37 +32,48 @@ function getPlayerSelection() {
 function playRound() {
 	playerSelection = getPlayerSelection();
 	computerChoice = getComputerChoice();
-	let playerWins = 0;
+	let playerWins = 1;
 	let compWins = 0;
 
 	if (playerSelection === computerChoice) {
-		console.log(`It's a tie!`);
+		return 3;
 	}
 	else if ((playerSelection === 0) && (computerChoice ===1)) {
-		console.log(`The computer wins.`);
-		compWins += 1;
+		return compWins;
 	}
 	else if ((playerSelection === 1) && (computerChoice === 0)) {
-		console.log(`You won!`);
-		playerWins += 1;
+		return playerWins;
 	}
 	else if ((playerSelection === 0) && (computerChoice === 2)) {
-		console.log(`You won!`);
-		playerWins += 1;
+		return playerWins;
 	}
 	else if ((playerSelection === 2) && (computerChoice === 0)) {
-		console.log(`The computer wins.`)
-		compWins += 1;
+		return compWins;
 	}
 	else if ((playerSelection === 1) && (computerChoice === 2)) {
-		console.log(`The computer wins.`)
-		compWins += 1;
+		return compWins;
 	}
 	else if ((playerSelection === 2) && (computerChoice === 1)) {
-		console.log(`You won!`);
-		playerWins += 1;
+		return playerWins;
 	}
 }
 
+function game() {
+	let playerWinCt = 0;
+	let computerWinCt = 0;
+	for (let i=0; i<5; i++) {
+		let winner = playRound();
+		if (winner === 1) {
+			playerWinCt += 1;
+		} else {
+			computerWinCt += 1;
+		}
+	}
+	if (playerWinCt >= computerWinCt) {
+		console.log(`Congrats, you won! You got `+playerWinCt+` out of 5.`);
+	} else {
+		console.log(`Sorry, you lost! The computer got `+computerWinCt+` out of 5.`);
+	}
+}
 
-console.log(playRound());
+console.log(game());
